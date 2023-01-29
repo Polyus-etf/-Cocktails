@@ -7,27 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BAC3AAC2970DF050027456F /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3AAB2970DF050027456F /* CocktailsViewController.swift */; };
+		8BAC3AAE2970DFA40027456F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3AAD2970DFA40027456F /* CollectionViewCell.swift */; };
+		8BC263B7297030C800F33640 /* DataTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC263B6297030C800F33640 /* DataTestManager.swift */; };
 		8BCCFB4C296F115A00CCB76D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB4B296F115A00CCB76D /* AppDelegate.swift */; };
 		8BCCFB4E296F115A00CCB76D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB4D296F115A00CCB76D /* SceneDelegate.swift */; };
-		8BCCFB50296F115A00CCB76D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB4F296F115A00CCB76D /* ViewController.swift */; };
+		8BCCFB50296F115A00CCB76D /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB4F296F115A00CCB76D /* DetailedViewController.swift */; };
 		8BCCFB53296F115A00CCB76D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BCCFB51296F115A00CCB76D /* Main.storyboard */; };
 		8BCCFB55296F115A00CCB76D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BCCFB54296F115A00CCB76D /* Assets.xcassets */; };
 		8BCCFB58296F115A00CCB76D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BCCFB56296F115A00CCB76D /* LaunchScreen.storyboard */; };
 		8BCCFB64296F122100CCB76D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB63296F122100CCB76D /* Model.swift */; };
 		8BCCFB67296F125A00CCB76D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB66296F125A00CCB76D /* NetworkManager.swift */; };
+		8BCCFB6A29702E5A00CCB76D /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB6929702E5A00CCB76D /* IngredientCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8BAC3AAB2970DF050027456F /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
+		8BAC3AAD2970DFA40027456F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		8BC263B6297030C800F33640 /* DataTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTestManager.swift; sourceTree = "<group>"; };
 		8BCCFB48296F115A00CCB76D /* Cocktail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BCCFB4B296F115A00CCB76D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BCCFB4D296F115A00CCB76D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8BCCFB4F296F115A00CCB76D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8BCCFB4F296F115A00CCB76D /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		8BCCFB52296F115A00CCB76D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8BCCFB54296F115A00CCB76D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BCCFB57296F115A00CCB76D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BCCFB59296F115A00CCB76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BCCFB63296F122100CCB76D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8BCCFB66296F125A00CCB76D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8BCCFB6929702E5A00CCB76D /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 				8BCCFB60296F119A00CCB76D /* Storyboards */,
 				8BCCFB61296F11AB00CCB76D /* Resource */,
 				8BCCFB65296F122700CCB76D /* Models */,
+				8BCCFB6B29702E7B00CCB76D /* Views */,
 			);
 			path = Cocktail;
 			sourceTree = "<group>";
@@ -100,7 +109,8 @@
 		8BCCFB62296F11B900CCB76D /* Viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				8BCCFB4F296F115A00CCB76D /* ViewController.swift */,
+				8BCCFB4F296F115A00CCB76D /* DetailedViewController.swift */,
+				8BAC3AAB2970DF050027456F /* CocktailsViewController.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -117,8 +127,18 @@
 			isa = PBXGroup;
 			children = (
 				8BCCFB66296F125A00CCB76D /* NetworkManager.swift */,
+				8BC263B6297030C800F33640 /* DataTestManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		8BCCFB6B29702E7B00CCB76D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8BCCFB6929702E5A00CCB76D /* IngredientCell.swift */,
+				8BAC3AAD2970DFA40027456F /* CollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,9 +212,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BCCFB50296F115A00CCB76D /* ViewController.swift in Sources */,
+				8BCCFB50296F115A00CCB76D /* DetailedViewController.swift in Sources */,
 				8BCCFB4C296F115A00CCB76D /* AppDelegate.swift in Sources */,
+				8BAC3AAE2970DFA40027456F /* CollectionViewCell.swift in Sources */,
 				8BCCFB67296F125A00CCB76D /* NetworkManager.swift in Sources */,
+				8BC263B7297030C800F33640 /* DataTestManager.swift in Sources */,
+				8BAC3AAC2970DF050027456F /* CocktailsViewController.swift in Sources */,
+				8BCCFB6A29702E5A00CCB76D /* IngredientCell.swift in Sources */,
 				8BCCFB4E296F115A00CCB76D /* SceneDelegate.swift in Sources */,
 				8BCCFB64296F122100CCB76D /* Model.swift in Sources */,
 			);
