@@ -22,15 +22,13 @@ class DetailedViewController: UIViewController {
     // MARK: - Public propertie
     public var idDrink: String?
     
-    // MARK: - Override"
+    // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         descriptionLabel.textColor = .darkGray
         fetchDrink(from: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(idDrink ?? "11007")")
-        
     }
     
     //MARK: - Private func
@@ -53,8 +51,6 @@ class DetailedViewController: UIViewController {
         let data = ImageManager.shared.fetchImage(from: url)
         imageView.image = UIImage(data: data!)
     }
-    
-    
     
     private func setIngridient(from drink: JsonDrink) -> [Ingredient] {
         var ingredient: [Ingredient] = []

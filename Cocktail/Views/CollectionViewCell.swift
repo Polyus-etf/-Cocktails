@@ -18,12 +18,10 @@ class CollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var cocktailNameLabel: UILabel!
     
-    
     // MARK: - Public methods
     func configure(with drink: JsonDrinkByIngredient?) {
         cocktailNameLabel.text = drink?.strDrink
         cocktailNameLabel.textColor = .gray
-        
         DispatchQueue.global().async {
             guard let stringUrl = drink?.strDrinkThumb else { return }
             guard let imageUrl = URL(string: stringUrl) else { return }
@@ -33,8 +31,4 @@ class CollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
-    
-    
-    
 }

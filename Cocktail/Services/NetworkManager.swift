@@ -98,9 +98,7 @@ class NetworkManager {
             }
         }.resume()
     }
-    
 }
-
 
 
 class ImageManager {

@@ -16,31 +16,31 @@ class IngredientCell: UICollectionViewCell {
             ingredientImageView.layer.cornerRadius = 15
         }
     }
-    @IBOutlet weak var ingredientNameLabel: UILabel!
-    @IBOutlet weak var ingredientMeasureLabel: UILabel!
-    
+    @IBOutlet weak var ingredientNameLabel: UILabel! {
+        didSet {
+            ingredientNameLabel.textColor = .gray
+        }
+    }
+    @IBOutlet weak var ingredientMeasureLabel: UILabel! {
+        didSet {
+            ingredientMeasureLabel.textColor = .lightGray
+        }
+    }
     
     // MARK: - Public methods
     func configure(with ingridient: Ingredient?) {
-        
-        ingredientNameLabel.textColor = .gray
-        ingredientNameLabel.text = ingridient?.name ?? "Margarita"
-        
-        ingredientMeasureLabel.textColor = .lightGray
+        ingredientNameLabel.text = ingridient?.name ?? ""
         ingredientMeasureLabel.text = ingridient?.measure ?? ""
         
         DispatchQueue.global().async {
             guard let stringUrl = ingridient?.imageUrl else { return }
             guard let imageUrl = URL(string: stringUrl) else { return }
             guard let imageData = try? Data(contentsOf: imageUrl) else {
-                print("ERRRRRRRRRRR")
+                print("Error get imageData")
                 return }
             DispatchQueue.main.async {
                 self.ingredientImageView.image = UIImage(data: imageData)
             }
         }
     }
-
-    
-
 }
