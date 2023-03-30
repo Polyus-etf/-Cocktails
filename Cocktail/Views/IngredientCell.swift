@@ -31,15 +31,17 @@ class IngredientCell: UICollectionViewCell {
     func configure(with ingridient: Ingredient?) {
         ingredientNameLabel.text = ingridient?.name ?? ""
         ingredientMeasureLabel.text = ingridient?.measure ?? ""
-        
-        DispatchQueue.global().async {
-            guard let stringUrl = ingridient?.imageUrl else { return }
-            guard let imageUrl = URL(string: stringUrl) else { return }
-            guard let imageData = try? Data(contentsOf: imageUrl) else {
-                print("Error get imageData")
-                return }
-            DispatchQueue.main.async {
-                self.ingredientImageView.image = UIImage(data: imageData)
+        fetchImage(from: ingridient?.imageUrl ?? "")
+    }
+    
+    // MARK: - Private methods
+    private func fetchImage(from url: String) {
+        NetworkManager.shared.fetchImage(from: url) { [weak self] result in
+            switch result {
+            case .success(let imageDate):
+                self?.ingredientImageView.image = UIImage(data: imageDate)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

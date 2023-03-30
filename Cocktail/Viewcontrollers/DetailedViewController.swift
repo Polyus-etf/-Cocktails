@@ -10,8 +10,20 @@ import UIKit
 class DetailedViewController: UIViewController {
 
     // MARK: - IBOutlet
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView! {
+        didSet {
+            imageView.layer.cornerRadius = 15
+            imageView.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var descriptionLabel: UILabel! {
+        didSet {
+            descriptionLabel.textColor = .darkGray
+        }
+    }
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Private properties
@@ -27,7 +39,6 @@ class DetailedViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        descriptionLabel.textColor = .darkGray
         fetchDrink(from: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(idDrink ?? "11007")")
     }
     
@@ -39,6 +50,7 @@ class DetailedViewController: UIViewController {
                 self.drink = drink.drinks.first
                 self.fetchImage(from: drink.drinks.first?.strDrinkThumb ?? "")
                 self.descriptionLabel.text = drink.drinks.first?.strInstructions
+                self.titleLabel.text = drink.drinks.first?.strDrink
                 self.ingredient = self.setIngridient(from: drink.drinks.first!)
                 self.collectionView.reloadData()
             case .failure(let error):
@@ -48,9 +60,16 @@ class DetailedViewController: UIViewController {
     }
     
     private func fetchImage(from url: String) {
-        let data = ImageManager.shared.fetchImage(from: url)
-        imageView.image = UIImage(data: data!)
+        NetworkManager.shared.fetchImage(from: url) { [weak self] result in
+            switch result {
+            case .success(let imageDate):
+                self?.imageView.image = UIImage(data: imageDate)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
+    
     
     private func setIngridient(from drink: JsonDrink) -> [Ingredient] {
         var ingredient: [Ingredient] = []

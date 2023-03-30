@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8BAC3AAC2970DF050027456F /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3AAB2970DF050027456F /* CocktailsViewController.swift */; };
-		8BAC3AAE2970DFA40027456F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3AAD2970DFA40027456F /* CollectionViewCell.swift */; };
+		8BAC3AAE2970DFA40027456F /* CocktailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3AAD2970DFA40027456F /* CocktailCell.swift */; };
 		8BC263B7297030C800F33640 /* DataTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC263B6297030C800F33640 /* DataTestManager.swift */; };
 		8BCCFB4C296F115A00CCB76D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB4B296F115A00CCB76D /* AppDelegate.swift */; };
 		8BCCFB4E296F115A00CCB76D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFB4D296F115A00CCB76D /* SceneDelegate.swift */; };
@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		8BAC3AAB2970DF050027456F /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
-		8BAC3AAD2970DFA40027456F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		8BAC3AAD2970DFA40027456F /* CocktailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCell.swift; sourceTree = "<group>"; };
 		8BC263B6297030C800F33640 /* DataTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTestManager.swift; sourceTree = "<group>"; };
 		8BCCFB48296F115A00CCB76D /* Cocktail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocktail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BCCFB4B296F115A00CCB76D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8BCCFB6929702E5A00CCB76D /* IngredientCell.swift */,
-				8BAC3AAD2970DFA40027456F /* CollectionViewCell.swift */,
+				8BAC3AAD2970DFA40027456F /* CocktailCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,7 +214,7 @@
 			files = (
 				8BCCFB50296F115A00CCB76D /* DetailedViewController.swift in Sources */,
 				8BCCFB4C296F115A00CCB76D /* AppDelegate.swift in Sources */,
-				8BAC3AAE2970DFA40027456F /* CollectionViewCell.swift in Sources */,
+				8BAC3AAE2970DFA40027456F /* CocktailCell.swift in Sources */,
 				8BCCFB67296F125A00CCB76D /* NetworkManager.swift in Sources */,
 				8BC263B7297030C800F33640 /* DataTestManager.swift in Sources */,
 				8BAC3AAC2970DF050027456F /* CocktailsViewController.swift in Sources */,

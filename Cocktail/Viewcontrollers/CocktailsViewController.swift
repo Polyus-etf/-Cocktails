@@ -71,29 +71,22 @@ class CocktailsViewController: UIViewController {
 
 
 
- 
- 
-
 // MARK: - UICollectionViewDataSource
 
 extension CocktailsViewController: UICollectionViewDataSource {
     
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        1
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return jsonDrinksByIngredient?.drinks.count ?? 0
+        jsonDrinksByIngredient?.drinks.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CollectionViewCell else { return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CocktailCell else { return UICollectionViewCell()}
         
         cell.configure(with: jsonDrinksByIngredient?.drinks[indexPath.item])
-        
         cell.layer.cornerRadius = 5.0
         cell.layer.borderWidth = 0.0
         cell.layer.shadowColor = UIColor.gray.cgColor
