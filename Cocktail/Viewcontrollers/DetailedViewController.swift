@@ -12,19 +12,20 @@ class DetailedViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var imageView: UIImageView! {
         didSet {
-            imageView.layer.cornerRadius = 15
+            imageView.layer.cornerRadius = 10
             imageView.clipsToBounds = true
         }
     }
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.textColor = .darkGray
         }
     }
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     // MARK: - Private properties
     private let width = (UIScreen.main.bounds.width - 16 - 16 - 10 - 10) / 3
@@ -39,41 +40,43 @@ class DetailedViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         fetchDrink(from: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(idDrink ?? "11007")")
     }
     
     //MARK: - Private func
     private func fetchDrink(from url: String) {
-        NetworkManager.shared.fetchDrinks(from: url) { result in
-            switch result{
+        NetworkManager.shared.fetch(dataType: JsonDrinks.self, from: url) { [weak self] result in
+            switch result {
             case .success(let drink):
-                self.drink = drink.drinks.first
-                self.fetchImage(from: drink.drinks.first?.strDrinkThumb ?? "")
-                self.descriptionLabel.text = drink.drinks.first?.strInstructions
-                self.titleLabel.text = drink.drinks.first?.strDrink
-                self.ingredient = self.setIngridient(from: drink.drinks.first!)
-                self.collectionView.reloadData()
+                self?.drink = drink.drinks.first
+                self?.fetchImage(from: drink.drinks.first?.strDrinkThumb ?? "")
+                self?.descriptionLabel.text = drink.drinks.first?.strInstructions
+                self?.titleLabel.text = drink.drinks.first?.strDrink
+                self?.ingredient = self?.setIngridient(from: drink.drinks.first!) ?? []
+                self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
+        
     private func fetchImage(from url: String) {
         NetworkManager.shared.fetchImage(from: url) { [weak self] result in
             switch result {
             case .success(let imageDate):
                 self?.imageView.image = UIImage(data: imageDate)
+                self?.activityIndicator.stopAnimating()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    
+    // Никак не придумаю как упростить эту функцию
     private func setIngridient(from drink: JsonDrink) -> [Ingredient] {
         var ingredient: [Ingredient] = []
-        
         if let name = drink.strIngredient1 {
             if name != "" {
                 ingredient.append(Ingredient(name: name, measure: drink.strMeasure1 ?? ""))
@@ -129,23 +132,18 @@ class DetailedViewController: UIViewController {
     }
 }
 
-// MARK: - Collection view delegate
-extension DetailedViewController: UICollectionViewDelegate {
-    
-}
 
 // MARK: - Collection view data source
 extension DetailedViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         ingredient.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? IngredientCell else { return UICollectionViewCell() }
         
         cell.configure(with: ingredient[indexPath.row])
-        
         cell.layer.cornerRadius = 5.0
         cell.layer.borderWidth = 0.0
         cell.layer.shadowColor = UIColor.gray.cgColor
@@ -160,7 +158,5 @@ extension DetailedViewController: UICollectionViewDataSource {
 
 // MARK: - Collection view delegate flow layout
 extension DetailedViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: width, height: collectionView.bounds.height - 50)
-    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { CGSize(width: width, height: collectionView.bounds.height - 50) }
 }

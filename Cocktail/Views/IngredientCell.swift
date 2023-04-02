@@ -13,7 +13,7 @@ class IngredientCell: UICollectionViewCell {
     @IBOutlet weak var ingredientImageView: UIImageView! {
         didSet {
             ingredientImageView.clipsToBounds = true
-            ingredientImageView.layer.cornerRadius = 15
+            ingredientImageView.layer.cornerRadius = 10
         }
     }
     @IBOutlet weak var ingredientNameLabel: UILabel! {
@@ -27,10 +27,14 @@ class IngredientCell: UICollectionViewCell {
         }
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Public methods
     func configure(with ingridient: Ingredient?) {
         ingredientNameLabel.text = ingridient?.name ?? ""
         ingredientMeasureLabel.text = ingridient?.measure ?? ""
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         fetchImage(from: ingridient?.imageUrl ?? "")
     }
     
@@ -40,6 +44,7 @@ class IngredientCell: UICollectionViewCell {
             switch result {
             case .success(let imageDate):
                 self?.ingredientImageView.image = UIImage(data: imageDate)
+                self?.activityIndicator.stopAnimating()
             case .failure(let error):
                 print(error.localizedDescription)
             }

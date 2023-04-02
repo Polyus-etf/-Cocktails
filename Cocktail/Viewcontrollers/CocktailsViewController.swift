@@ -15,13 +15,11 @@ class CocktailsViewController: UIViewController {
     
     
     //MARK: - Private properties
-    private var jsonDrinksByIngredient: JsonDrinksByIngredient?
-    private var ingredients: JsonIngredients?
     private let reuseIdentifier = "cocktail"
-    private var spinnerView = UIActivityIndicatorView()
-    
-    //MARK: - Public properties
-    
+    private var jsonDrinksByIngredient: JsonDrinksByIngredient?
+    private var jsonIngredients: JsonIngredients?
+//    private var spinnerView = UIActivityIndicatorView()
+
     
     //MARK: - Override
     override func viewDidLoad() {
@@ -37,11 +35,11 @@ class CocktailsViewController: UIViewController {
     
     //MARK: - Private func
     private func fetchDrinks(from url: String) {
-        NetworkManager.shared.fetchDrinksByIngredient(from: url) { result in
+        NetworkManager.shared.fetch(dataType: JsonDrinksByIngredient.self, from: url) { [weak self] result in
             switch result{
             case .success(let drinks):
-                self.jsonDrinksByIngredient = drinks
-                self.collectionView.reloadData()
+                self?.jsonDrinksByIngredient = drinks
+                self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -49,17 +47,16 @@ class CocktailsViewController: UIViewController {
     }
     
     private func fetchIngredient(from url: String) {
-        NetworkManager.shared.fetchIngredients(from: url) { result in
+        NetworkManager.shared.fetch(dataType: JsonIngredients.self, from: url) { [weak self] result in
             switch result{
             case .success(let ingredients):
-                self.ingredients = ingredients
-                self.ingredientPickerView.reloadAllComponents()
+                self?.jsonIngredients = ingredients
+                self?.ingredientPickerView.reloadAllComponents()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,7 +65,6 @@ class CocktailsViewController: UIViewController {
         detailedVC.idDrink = jsonDrinksByIngredient?.drinks[indexPath.item].idDrink
     }
 }
-
 
 
 // MARK: - UICollectionViewDataSource
@@ -99,21 +95,10 @@ extension CocktailsViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-
-//extension CocktailsViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
-//}
-
-
 
 // MARK: - Collection view delegate flow layout
 extension CocktailsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 150, height: collectionView.bounds.height - 50)
-    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { CGSize(width: 150, height: collectionView.bounds.height - 50) }
 }
 
 
@@ -121,18 +106,15 @@ extension CocktailsViewController: UICollectionViewDelegateFlowLayout {
 extension CocktailsViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        ingredients?.drinks[row].strIngredient1 ?? "load data..."
+        jsonIngredients?.drinks[row].strIngredient1 ?? "load data..."
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let ingredientWithSpace = ingredients?.drinks[row].strIngredient1 ?? "margarita"
+        let ingredientWithSpace = jsonIngredients?.drinks[row].strIngredient1 ?? "margarita"
         let ingredientWithoutSpace = ingredientWithSpace.replacingOccurrences(of: " ", with: "%20")
         let url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=\(ingredientWithoutSpace)"
         fetchDrinks(from: url)
     }
-    
-    
-    
 }
 
 // MARK: - UIPickerViewDataSource
@@ -143,7 +125,7 @@ extension CocktailsViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        ingredients?.drinks.count ?? 1
+        jsonIngredients?.drinks.count ?? 1
     }
 }
 

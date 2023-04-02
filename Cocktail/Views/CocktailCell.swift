@@ -12,7 +12,7 @@ class CocktailCell: UICollectionViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var cocktailImageView: UIImageView! {
         didSet {
-            cocktailImageView.layer.cornerRadius = 10
+            cocktailImageView.layer.cornerRadius = 5
             cocktailImageView.clipsToBounds = true
         }
     }
@@ -22,9 +22,13 @@ class CocktailCell: UICollectionViewCell {
         }
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Public methods
     func configure(with drink: JsonDrinkByIngredient?) {
         cocktailNameLabel.text = drink?.strDrink
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         fetchImage(from: drink?.strDrinkThumb ?? "")
     }
     
@@ -34,6 +38,7 @@ class CocktailCell: UICollectionViewCell {
             switch result {
             case .success(let imageDate):
                 self?.cocktailImageView.image = UIImage(data: imageDate)
+                self?.activityIndicator.stopAnimating()
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct IngredientList: Decodable {
-    let ingredients: [String]
-}
+//struct Drinks {
+//    let drinks: [Drink]
+//}
+
+//struct Drink {
+//    let drink: String
+//    let glass: String
+//    let instructions: String
+//    let ingredients: [Ingredient]
+
 
 struct Ingredient: Decodable {
     let name: String
@@ -20,15 +27,8 @@ struct Ingredient: Decodable {
     }
 }
 
-struct Drink {
-    let drink: String
-    let glass: String
-    let instructions: String
-    let ingredients: [Ingredient]
-}
-
-struct Drinks {
-    let drinks: [Drink]
+struct JsonDrinks: Decodable {
+    let drinks: [JsonDrink]
 }
 
 struct JsonDrink: Decodable {
@@ -76,16 +76,20 @@ struct JsonDrink: Decodable {
     let strImageSource: String?
 }
 
-struct JsonDrinks: Decodable {
-    let drinks: [JsonDrink]
+
+
+struct JsonIngredients: Decodable {
+    let drinks: [JsonIngredient]
 }
 
 struct JsonIngredient: Decodable {
     let strIngredient1: String
 }
 
-struct JsonIngredients: Decodable {
-    let drinks: [JsonIngredient]
+
+
+struct JsonDrinksByIngredient: Decodable {
+    let drinks: [JsonDrinkByIngredient]
 }
 
 struct JsonDrinkByIngredient: Decodable {
@@ -94,6 +98,3 @@ struct JsonDrinkByIngredient: Decodable {
     let idDrink: String
 }
 
-struct JsonDrinksByIngredient: Decodable {
-    let drinks: [JsonDrinkByIngredient]
-}
